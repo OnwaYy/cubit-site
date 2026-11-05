@@ -109,10 +109,14 @@ $('#acc-form').addEventListener('submit', async (e) => {
 });
 $('#pay-copy').addEventListener('click', () => { navigator.clipboard?.writeText(session?.email || ''); $('#pay-copy').textContent = lang() === 'fr' ? 'copié ✓' : 'copied ✓'; });
 // Paiement : l'email du compte part avec la commande
+// Le paiement n'est possible qu'après avoir coché la renonciation au droit de rétractation
+const waiver = $('#pay-waiver');
+const syncWaiver = () => $$('#pay-choices [data-pay]').forEach((b) => { b.disabled = !waiver.checked; });
+waiver.addEventListener('change', syncWaiver); syncWaiver();
 $$('#pay-choices [data-pay]').forEach((btn) => btn.addEventListener('click', async () => {
   const err = $('#buy-err'); const fr = lang() === 'fr';
   err.textContent = '';
-  if (!session) return;
+  if (!session || !waiver.checked) return;
   if (btn.dataset.pay === 'card') {
     navigator.clipboard?.writeText(session.email).catch(() => {});
     // Paiement par-dessus le site (fenêtre Payhip) ; sinon la page Payhip classique
@@ -170,7 +174,17 @@ $$('.tabs [data-shot]').forEach((b) => b.addEventListener('click', () => showSho
 
 // ---------- Apparitions au défilement ----------
 const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 }) : null;
-$$('.sec-head, .tabs, .screen, .tile, .team-text, .chat, .phone-wrap, .mobile-text, .needs-row p, .price-card, .faq details, .final h2').forEach((el) => { if (io && !calm) { el.classList.add('reveal'); io.observe(el); } });
+$$('.sec-head, .tabs, .screen, .tile, .team-text, .chat, .phone-wrap, .mobile-text, .needs-row p, .price-card, .faq details, .final h2, .final-sub, .check-text, .check-result, .not-ai-box, .ticks li').forEach((el) => {
+  if (!io || calm) return;
+  el.classList.add('reveal');
+  // Les éléments d'une même rangée arrivent l'un après l'autre
+  const i = [...el.parentElement.children].filter((c) => c.tagName === el.tagName).indexOf(el);
+  if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
+  io.observe(el);
+});
+// Barre de progression de lecture
+const bar = $('#scroll-bar');
+if (bar) addEventListener('scroll', () => { const h = document.documentElement; bar.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`; }, { passive: true });
 
 // ---------- La démo : trois agents qui travaillent en même temps ----------
 const D = {

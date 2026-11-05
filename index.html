@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
@@ -38,20 +38,21 @@
   </div>
 </header>
 
+<div class="scroll-bar" id="scroll-bar" aria-hidden="true"></div>
 <main id="main">
   <!-- ============ HÉROS : la démo vivante ============ -->
   <section class="hero" id="top">
     <div class="hero-glow" aria-hidden="true"></div>
     <canvas class="embers" id="embers" aria-hidden="true"></canvas>
     <div class="hero-head">
-      <p class="kicker"><img src="img/cubit-logo.png" alt="" width="22" height="22"><span lang="fr">Pour Roblox Studio, avec Claude Code</span><span lang="en">For Roblox Studio, with Claude Code</span></p>
+      <p class="kicker"><img src="img/cubit-logo.png" alt="" width="22" height="22"><span lang="fr">Pour les créateurs Roblox · avec Claude Code</span><span lang="en">For Roblox creators · with Claude Code</span></p>
       <h1>
-        <span lang="fr"><span class="h1-a">Arrête de copier-coller.</span><span class="h1-b">Dirige une équipe.</span></span>
-        <span lang="en"><span class="h1-a">Stop copy-pasting.</span><span class="h1-b">Run a team.</span></span>
+        <span lang="fr"><span class="h1-a">Ton idée de jeu Roblox.</span><span class="h1-b">Ton équipe d'IA la construit.</span></span>
+        <span lang="en"><span class="h1-a">Your Roblox game idea.</span><span class="h1-b">Your AI team builds it.</span></span>
       </h1>
       <p class="lead">
-        <span lang="fr">Cubit fait travailler plusieurs agents IA sur ton jeu Roblox en même temps. Un Chef de projet découpe, des spécialistes codent, le code part tout seul dans Studio. Toi, tu valides.</span>
-        <span lang="en">Cubit puts several AI agents to work on your Roblox game at once. A project lead splits the work, specialists code it, and it flows straight into Studio. You just approve.</span>
+        <span lang="fr">Décris ce que tu veux. Cubit fait travailler plusieurs agents Claude en même temps sur ton jeu : un Chef de projet répartit le travail, les spécialistes codent, et tout arrive directement dans Roblox Studio. Toi, tu gardes la main.</span>
+        <span lang="en">Describe what you want. Cubit puts several Claude agents to work on your game at once: a project lead splits the work, specialists code it, and everything lands straight in Roblox Studio. You stay in control.</span>
       </p>
       <div class="hero-cta">
         <a class="btn buy" href="#price"><span lang="fr">Acheter Cubit</span><span lang="en">Get Cubit</span><b data-price></b></a>
@@ -105,8 +106,9 @@
   <!-- ============ ESSAI : donne une tâche ============ -->
   <section class="try" id="try">
     <div class="sec-head">
-      <h2><span lang="fr">Donne-lui une tâche.</span><span lang="en">Give it a task.</span></h2>
-      <p><span lang="fr">Choisis une demande ou écris la tienne : regarde le Chef de projet la découper et la répartir entre ses spécialistes.</span><span lang="en">Pick a request or write your own: watch the project lead split it and hand it to specialists.</span></p>
+      <p class="sec-kicker"><span lang="fr">Essaie</span><span lang="en">Try it</span></p>
+      <h2><span lang="fr">Donne une mission à ton équipe.</span><span lang="en">Give your team a mission.</span></h2>
+      <p><span lang="fr">Choisis une demande ou écris la tienne, et regarde le Chef de projet la découper en tâches pour ses spécialistes. C'est exactement ce qui se passe dans l'appli.</span><span lang="en">Pick a request or write your own, and watch the project lead split it into tasks for its specialists. That's exactly what happens in the app.</span></p>
     </div>
     <div class="try-box">
       <div class="try-ask">
@@ -127,8 +129,9 @@
   <!-- ============ VISITE DE L'APPLI ============ -->
   <section class="tour" id="tour">
     <div class="sec-head">
-      <h2><span lang="fr">Un vrai poste de commande, pas un chat de plus.</span><span lang="en">A real command center, not another chat box.</span></h2>
-      <p><span lang="fr">Chaque écran a un seul rôle : voir ce qui t'attend, suivre tes agents, écrire le plan, travailler à plusieurs.</span><span lang="en">Each screen has one job: see what needs you, follow your agents, write the plan, work together.</span></p>
+      <p class="sec-kicker"><span lang="fr">L'appli</span><span lang="en">The app</span></p>
+      <h2><span lang="fr">Tout ton jeu, sous tes yeux.</span><span lang="en">Your whole game, at a glance.</span></h2>
+      <p><span lang="fr">Tes agents côte à côte, le plan du jeu, ce qui t'attend et ton équipe : tu sais toujours qui fait quoi, et tu valides d'un clic.</span><span lang="en">Your agents side by side, the game plan, what needs you and your team: you always know who does what, and approve in one click.</span></p>
     </div>
     <div class="tabs" role="tablist" aria-label="Écrans de Cubit">
       <button role="tab" aria-selected="true" data-shot="agents"><span lang="fr">Agents</span><span lang="en">Agents</span></button>
@@ -147,7 +150,8 @@
   <!-- ============ FONCTIONS (grille) ============ -->
   <section class="features" id="features">
     <div class="sec-head">
-      <h2><span lang="fr">Tout ce qu'il faut pour sortir ton jeu.</span><span lang="en">Everything it takes to ship your game.</span></h2>
+      <p class="sec-kicker"><span lang="fr">Les fonctions</span><span lang="en">Features</span></p>
+      <h2><span lang="fr">Pensé pour finir ton jeu, pas juste pour coder.</span><span lang="en">Built to finish your game, not just to write code.</span></h2>
     </div>
     <div class="bento">
       <article class="tile t-undo">
@@ -162,8 +166,8 @@
       </article>
       <article class="tile t-plan">
         <div class="viz tasks" aria-hidden="true"><p class="ok">Données joueurs</p><p class="ok">Hub et portails</p><p class="now">Boutique mobile</p><p>Œufs et raretés</p></div>
-        <h3><span lang="fr">Un plan que les agents suivent</span><span lang="en">A plan agents follow</span></h3>
-        <p><span lang="fr">Un assistant t'aide à écrire le plan du jeu. Les agents le lisent avant de coder et cochent ce qu'ils finissent.</span><span lang="en">An assistant helps you write the game plan. Agents read it before coding and tick off what they finish.</span></p>
+        <h3><span lang="fr">Un plan suivi à la lettre</span><span lang="en">A plan followed to the letter</span></h3>
+        <p><span lang="fr">Un assistant t'aide à écrire le plan complet de ton jeu : chiffres, zones, écrans, style. Les agents le suivent et cochent ce qu'ils finissent.</span><span lang="en">An assistant helps you write your game's full plan: numbers, zones, screens, style. Agents follow it and tick off what they finish.</span></p>
       </article>
       <article class="tile t-tokens">
         <div class="viz meter" aria-hidden="true"><span class="m-before"><i></i></span><span class="m-after"><i></i></span></div>
@@ -180,8 +184,8 @@
           <li><span lang="fr">Versions automatiques</span><span lang="en">Automatic versions</span></li>
           <li><span lang="fr">Vérification avant publication</span><span lang="en">Pre-release check</span></li>
           <li><span lang="fr">Mes systèmes réutilisables</span><span lang="en">Reusable systems</span></li>
-          <li><span lang="fr">Images (Gemini) et 3D (Blender)</span><span lang="en">Images (Gemini) and 3D (Blender)</span></li>
-          <li><span lang="fr">Notes de mise à jour FR / EN</span><span lang="en">FR / EN update notes</span></li>
+          <li><span lang="fr">Modèles 3D avec Blender</span><span lang="en">3D models with Blender</span></li>
+          <li><span lang="fr">Erreurs du jeu remontées aux agents</span><span lang="en">Game errors sent to your agents</span></li>
           <li><span lang="fr">Demandes programmées</span><span lang="en">Scheduled requests</span></li>
         </ul>
       </article>
@@ -191,7 +195,8 @@
   <!-- ============ ÉQUIPE ============ -->
   <section class="team" id="team">
     <div class="team-text">
-      <h2><span lang="fr">Ton studio, pas juste toi.</span><span lang="en">Your studio, not just you.</span></h2>
+      <p class="sec-kicker"><span lang="fr">En équipe</span><span lang="en">Teams</span></p>
+      <h2><span lang="fr">Tu n'es plus seul sur ton jeu.</span><span lang="en">You're no longer alone on your game.</span></h2>
       <p class="big"><span lang="fr">Invite tes devs, partagez un jeu, et vos agents se coordonnent entre vos PC.</span><span lang="en">Invite your devs, share a game, and your agents coordinate across your PCs.</span></p>
       <ul class="ticks">
         <li><span lang="fr">Le code se synchronise tout seul, dans un dépôt GitHub privé.</span><span lang="en">Code syncs on its own, in a private GitHub repo.</span></li>
@@ -214,6 +219,7 @@
   <section class="mobile">
     <div class="phone-wrap"><div class="phone"><img src="img/mobile.webp" width="390" height="844" loading="lazy" alt="Cubit mobile : la discussion de l'équipe sur un téléphone."></div></div>
     <div class="mobile-text">
+      <p class="sec-kicker"><span lang="fr">Sur ton téléphone</span><span lang="en">On your phone</span></p>
       <h2><span lang="fr">Ton téléphone devient la télécommande.</span><span lang="en">Your phone becomes the remote.</span></h2>
       <p class="big"><span lang="fr">Autorise, réponds, lance une tâche ou vérifie un changement depuis ton canapé. Un QR code suffit, aucun store.</span><span lang="en">Allow, reply, launch a task or review a change from your couch. A QR code is all it takes, no app store.</span></p>
     </div>
@@ -222,6 +228,7 @@
   <!-- ============ TON PC ============ -->
   <section class="check" id="check">
     <div class="check-text">
+      <p class="sec-kicker"><span lang="fr">Ton PC</span><span lang="en">Your PC</span></p>
       <h2><span lang="fr">Ton PC est-il prêt ?</span><span lang="en">Is your PC ready?</span></h2>
       <p class="big"><span lang="fr">Trois clics pour une estimation. Pour un vrai diagnostic, télécharge Cubit : son test de PC est gratuit, même sans licence.</span><span lang="en">Three clicks for an estimate. For a real diagnosis, download Cubit: its PC test is free, even without a licence.</span></p>
       <div class="check-q">
@@ -289,6 +296,7 @@
             <div id="pay-owned" class="buy-ok" hidden><span lang="fr">Tu as déjà Cubit sur ce compte ! Télécharge l'appli et connecte-toi.</span><span lang="en">You already own Cubit on this account! Download the app and sign in.</span></div>
             <div id="pay-choices">
               <p class="pay-note"><span lang="fr">Sur la page de paiement, entre exactement cet email :</span><span lang="en">On the payment page, enter exactly this email:</span> <b id="pay-email"></b> <button type="button" class="link-btn" id="pay-copy"><span lang="fr">copier</span><span lang="en">copy</span></button></p>
+              <label class="waiver"><input type="checkbox" id="pay-waiver"><span lang="fr">Je demande l'accès immédiat à Cubit après le paiement et je renonce à mon droit de rétractation de 14 jours. J'accepte les <a href="legal.html#cgv" target="_blank">conditions de vente</a>.</span><span lang="en">I request immediate access to Cubit after payment and waive my 14-day right of withdrawal. I accept the <a href="legal.html#cgv" target="_blank">terms of sale</a>.</span></label>
               <button class="btn buy" type="button" data-pay="card"><span lang="fr">Payer par carte ou PayPal</span><span lang="en">Pay by card or PayPal</span></button>
               <button class="btn glass" type="button" data-pay="crypto"><span lang="fr">Payer en crypto</span><span lang="en">Pay with crypto</span></button>
               <p class="fine"><span lang="fr">Carte et PayPal via Payhip<span data-crypto-note>, crypto (BTC, ETH, USDT, SOL…) via NOWPayments</span>.</span><span lang="en">Card and PayPal via Payhip<span data-crypto-note>, crypto (BTC, ETH, USDT, SOL…) via NOWPayments</span>.</span></p>
@@ -328,7 +336,7 @@
       <details><summary><span lang="fr">Combien de PC par licence ?</span><span lang="en">How many PCs per licence?</span></summary>
         <p><span lang="fr">La licence suit ton compte Cubit : PC fixe ou portable. En équipe, chaque membre a la sienne.</span><span lang="en">The licence follows your Cubit account: desktop or laptop. In a team, each member has their own.</span></p></details>
       <details><summary><span lang="fr">Et si ça ne me convient pas ?</span><span lang="en">What if it isn't for me?</span></summary>
-        <p><span lang="fr">Écris-nous sur <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a> dans les 14 jours suivant l'achat : on te rembourse.</span><span lang="en">Message us on <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a> within 14 days of purchase and we'll refund you.</span></p></details>
+        <p><span lang="fr">Fais d'abord le test gratuit de ton PC pour vérifier que tout marche chez toi : Cubit étant un logiciel livré tout de suite, il n'est pas remboursable une fois payé. Si quelque chose ne fonctionne pas comme promis, écris-nous sur <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a> : on le corrige.</span><span lang="en">Run the free PC test first to check everything works for you: Cubit is delivered instantly, so it isn't refundable once paid. If something doesn't work as promised, message us on <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a> and we'll fix it.</span></p></details>
       <details><summary><span lang="fr">Besoin d'aide ?</span><span lang="en">Need help?</span></summary>
         <p><span lang="fr">Rejoins notre <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a> : on t'aide pour l'installation, ton compte, un achat ou un bug, et tu peux y proposer des idées.</span><span lang="en">Join our <a href="https://discord.gg/f2B6KfaYT2" target="_blank" rel="noopener">Discord</a>: we help with setup, your account, a purchase or a bug, and you can suggest ideas.</span></p></details>
     </div>
@@ -337,6 +345,7 @@
   <!-- ============ DERNIER APPEL ============ -->
   <section class="final">
     <h2><span lang="fr">Ton prochain jeu commence ici.</span><span lang="en">Your next game starts here.</span></h2>
+    <p class="final-sub"><span lang="fr">Tu as l'idée. Ton équipe est prête.</span><span lang="en">You have the idea. Your team is ready.</span></p>
     <a class="btn buy" href="#price"><span lang="fr">Acheter Cubit</span><span lang="en">Get Cubit</span><b data-price></b></a>
   </section>
 </main>
@@ -353,7 +362,7 @@
   <p class="fine"><span lang="fr">Cubit n'est affilié ni à Roblox Corporation ni à Anthropic. Roblox et Claude sont des marques de leurs propriétaires.</span><span lang="en">Cubit is not affiliated with Roblox Corporation or Anthropic. Roblox and Claude are trademarks of their respective owners.</span></p>
 </footer>
 
-<script src="site.js?v=8"></script>
+<script src="site.js?v=9"></script>
 <script src="https://payhip.com/payhip.js" async></script>
 </body>
 </html>
