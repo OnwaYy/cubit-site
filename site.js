@@ -4,7 +4,7 @@ const SITE = {
   downloadUrl: 'https://github.com/OnwaYy/meo-hub-releases/releases/latest', // téléchargement gratuit (test du PC)
   payhipUrl: 'https://payhip.com/b/lfs9F',                     // lien du produit Payhip (carte, PayPal), ex. https://payhip.com/b/AbC12
   cryptoApi: 'https://rbthdyzaomiltdtyxpaw.supabase.co/functions/v1/meo-pay',                     // fonction Supabase meo-pay (crypto), vide = pas de crypto
-  contactEmail: ''                   // email de contact affiché en bas de page
+  contactEmail: 'meostudio.pro@outlook.com'                   // email de contact affiché en bas de page
 };
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -173,18 +173,13 @@ $$('.tabs [data-shot]').forEach((b) => b.addEventListener('click', () => showSho
 ['home', 'plan', 'team'].forEach((k) => { const i = new Image(); i.src = `img/${k}.webp`; }); // préchargement
 
 // ---------- Apparitions au défilement ----------
-const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 }) : null;
-$$('.sec-head, .tabs, .screen, .tile, .team-text, .chat, .phone-wrap, .mobile-text, .needs-row p, .price-card, .faq details, .final h2, .final-sub, .check-text, .check-result, .not-ai-box, .ticks li').forEach((el) => {
-  if (!io || calm) return;
+const io = 'IntersectionObserver' in window && !calm ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 }) : null;
+if (io) $$('.sec-head, .tabs, .screen, .tile, .try-box, .team-text, .chat, .phone-wrap, .mobile-text, .needs-row p, .not-ai-box, .price-card, .faq details, .final h2, .final-sub, .check-text, .check-result').forEach((el) => {
   el.classList.add('reveal');
-  // Les éléments d'une même rangée arrivent l'un après l'autre
-  const i = [...el.parentElement.children].filter((c) => c.tagName === el.tagName).indexOf(el);
-  if (i > 0) el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
+  const i = [...el.parentElement.children].filter((c) => c.classList.contains(el.classList[0])).indexOf(el);
+  if (i > 0) el.style.transitionDelay = `${Math.min(i, 5) * 70}ms`;
   io.observe(el);
 });
-// Barre de progression de lecture
-const bar = $('#scroll-bar');
-if (bar) addEventListener('scroll', () => { const h = document.documentElement; bar.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`; }, { passive: true });
 
 // ---------- La démo : trois agents qui travaillent en même temps ----------
 const D = {
@@ -292,7 +287,7 @@ const TASKS = {
     chef: 'Project lead'
   }
 };
-const COLORS = ['#5b8cff', '#8f6bff', '#4fe0a0', '#ffb03a'];
+const COLORS = ['#ff8a3c', '#5b7cff', '#3ecf8e', '#ffc94a'];
 let tryRun = 0;
 async function runTask(key, text) {
   const id = ++tryRun; const T = TASKS[lang()];
@@ -306,7 +301,7 @@ async function runTask(key, text) {
   const cards = task.subs.map(([ic, who, what, fl], i) => {
     const el = document.createElement('div');
     el.className = 'sub';
-    el.innerHTML = `<span class="who" style="background:${COLORS[i % 4]}22;color:${COLORS[i % 4]}">${ic}</span><strong>${who} · ${what}</strong><span class="pct">0 %</span><span class="file"></span><span class="bar"><i style="background:${COLORS[i % 4]}"></i></span>`;
+    el.innerHTML = `<span class="who" style="background:${COLORS[i % 4]}26;color:${COLORS[i % 4]}">${ic}</span><strong>${who} · ${what}</strong><span class="pct">0 %</span><span class="file"></span><span class="bar"><i style="background:${COLORS[i % 4]}"></i></span>`;
     box.appendChild(el);
     return { el, fl };
   });
@@ -371,57 +366,6 @@ $$('.seg').forEach((g) => $$('button', g).forEach((b) => b.addEventListener('cli
   pc[g.dataset.q] = Number(b.dataset.v);
   renderCheck();
 })));
-
-// ---------- Braises qui montent dans le héros ----------
-(function embers() {
-  const c = $('#embers');
-  if (!c || calm) return;
-  const ctx = c.getContext('2d');
-  let w = 0; let h = 0; let parts = []; let visible = true;
-  const size = () => { const r = c.getBoundingClientRect(); w = c.width = r.width * devicePixelRatio; h = c.height = r.height * devicePixelRatio; };
-  const spawn = () => ({ x: Math.random() * w, y: h + Math.random() * h * .3, r: (Math.random() * 1.8 + .6) * devicePixelRatio, vy: (Math.random() * .5 + .25) * devicePixelRatio, vx: (Math.random() - .5) * .3 * devicePixelRatio, life: 0, max: 400 + Math.random() * 500, hue: 20 + Math.random() * 25 });
-  size(); addEventListener('resize', size);
-  parts = Array.from({ length: 70 }, () => { const p = spawn(); p.y = Math.random() * h; p.life = Math.random() * p.max; return p; });
-  new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(c);
-  (function tick() {
-    if (visible) {
-      ctx.clearRect(0, 0, w, h);
-      for (const p of parts) {
-        p.life++; p.y -= p.vy; p.x += p.vx + Math.sin(p.life / 40) * .2;
-        const a = Math.max(0, Math.sin(Math.PI * p.life / p.max)) * .8;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 100%, 62%, ${a})`; ctx.shadowColor = `hsla(${p.hue}, 100%, 55%, ${a})`; ctx.shadowBlur = 12;
-        ctx.fill();
-        if (p.life > p.max || p.y < -10) Object.assign(p, spawn());
-      }
-    }
-    requestAnimationFrame(tick);
-  })();
-})();
-
-// ---------- Effets à la souris ----------
-if (!calm && matchMedia('(pointer: fine)').matches) {
-  // Lumière qui suit la souris sur les tuiles
-  $$('.tile').forEach((t) => t.addEventListener('pointermove', (e) => { const r = t.getBoundingClientRect(); t.style.setProperty('--mx', `${e.clientX - r.left}px`); t.style.setProperty('--my', `${e.clientY - r.top}px`); }));
-  // La capture de l'appli s'incline vers la souris
-  const scr = $('.screen'); const fr = $('.screen-frame');
-  scr?.addEventListener('pointermove', (e) => { const r = scr.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5; const y = (e.clientY - r.top) / r.height - .5; fr.style.transform = `rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg)`; });
-  scr?.addEventListener('pointerleave', () => { fr.style.transform = ''; });
-}
-// Le tableau des agents se redresse quand on descend
-const board = $('#board');
-if (board && !calm) addEventListener('scroll', () => { const p = Math.min(1, Math.max(0, scrollY / 420)); board.style.transform = `rotateX(${(8 * (1 - p)).toFixed(2)}deg) scale(${(1 + p * .02).toFixed(3)})`; }, { passive: true });
-// Étincelles quand on clique sur Acheter
-document.addEventListener('click', (e) => {
-  const b = e.target.closest('.btn.buy'); if (!b || calm) return;
-  for (let i = 0; i < 14; i++) {
-    const s = document.createElement('span'); s.className = 'spark';
-    s.style.left = `${e.clientX}px`; s.style.top = `${e.clientY}px`;
-    document.body.appendChild(s);
-    const a = Math.random() * Math.PI * 2; const d = 40 + Math.random() * 70;
-    s.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${Math.cos(a) * d}px, ${Math.sin(a) * d - 30}px) scale(.2)`, opacity: 0 }], { duration: 650 + Math.random() * 300, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => s.remove();
-  }
-});
 
 $('#lang').addEventListener('click', () => setLang(lang() === 'fr' ? 'en' : 'fr'));
 setLang(pickLang());

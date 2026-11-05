@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cubit · l'atelier de vibe coding pour Roblox</title>
 <meta name="description" content="Cubit fait travailler plusieurs agents Claude Code sur ton jeu Roblox en même temps : plan du jeu, synchro avec Studio, annuler, mode équipe et appli mobile.">
-<meta property="og:title" content="Cubit · Arrête de copier-coller. Dirige une équipe.">
+<meta property="og:title" content="Cubit · Ton idée de jeu Roblox, ton équipe d'IA la construit">
 <meta property="og:description" content="Plusieurs agents Claude Code sur ton jeu Roblox, en même temps. Tu diriges, ils codent.">
 <meta property="og:image" content="img/agents.webp">
-<meta name="theme-color" content="#070917">
+<meta name="theme-color" content="#0b0d14">
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 <a class="skip" href="#main"><span lang="fr">Aller au contenu</span><span lang="en">Skip to content</span></a>
@@ -38,17 +38,15 @@
   </div>
 </header>
 
-<div class="scroll-bar" id="scroll-bar" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="brick" viewBox="0 0 100 92"><path d="M50 22 90 42 50 62 10 42Z" fill="currentColor"/><path d="M10 42 50 62 50 90 10 70Z" fill="currentColor"/><path d="M10 42 50 62 50 90 10 70Z" fill="#000" opacity=".28"/><path d="M50 62 90 42 90 70 50 90Z" fill="currentColor"/><path d="M50 62 90 42 90 70 50 90Z" fill="#000" opacity=".48"/><g id="stud"><ellipse cx="50" cy="32" rx="9" ry="4.5" fill="#000" opacity=".35"/><rect x="41" y="25" width="18" height="7" fill="currentColor"/><rect x="41" y="25" width="18" height="7" fill="#000" opacity=".3"/><ellipse cx="50" cy="25" rx="9" ry="4.5" fill="currentColor"/><ellipse cx="50" cy="25" rx="9" ry="4.5" fill="#fff" opacity=".18"/></g><use href="#stud" x="-20" y="10"/><use href="#stud" x="20" y="10"/><use href="#stud" x="0" y="20"/></symbol></defs></svg>
 <main id="main">
   <!-- ============ HÉROS : la démo vivante ============ -->
   <section class="hero" id="top">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <canvas class="embers" id="embers" aria-hidden="true"></canvas>
     <div class="hero-head">
-      <p class="kicker"><img src="img/cubit-logo.png" alt="" width="22" height="22"><span lang="fr">Pour les créateurs Roblox · avec Claude Code</span><span lang="en">For Roblox creators · with Claude Code</span></p>
+      <p class="kicker"><span lang="fr">Pour les créateurs Roblox · avec Claude Code</span><span lang="en">For Roblox creators · with Claude Code</span></p>
       <h1>
-        <span lang="fr"><span class="h1-a">Ton idée de jeu Roblox.</span><span class="h1-b">Ton équipe d'IA la construit.</span></span>
-        <span lang="en"><span class="h1-a">Your Roblox game idea.</span><span class="h1-b">Your AI team builds it.</span></span>
+        <span lang="fr"><span class="h1-a">Ton idée de jeu Roblox</span><span class="h1-b">Ton équipe d'IA la construit</span></span>
+        <span lang="en"><span class="h1-a">Your Roblox game idea</span><span class="h1-b">Your AI team builds it</span></span>
       </h1>
       <p class="lead">
         <span lang="fr">Décris ce que tu veux. Cubit fait travailler plusieurs agents Claude en même temps sur ton jeu : un Chef de projet répartit le travail, les spécialistes codent, et tout arrive directement dans Roblox Studio. Toi, tu gardes la main.</span>
@@ -59,12 +57,16 @@
         <a class="btn glass" href="#check"><span lang="fr">Tester mon PC gratuitement</span><span lang="en">Test my PC for free</span></a>
       </div>
       <p class="fine"><span lang="fr">Windows 10 et 11 · paiement unique · mises à jour comprises</span><span lang="en">Windows 10 and 11 · one-time payment · updates included</span></p>
-      <p class="not-ai"><span lang="fr">On ne vend pas une IA : on vend le logiciel qui exploite ton Claude à son plein potentiel.</span><span lang="en">We don't sell an AI: we sell the software that pushes your Claude to its full potential.</span></p>
+      <p class="not-ai"><span lang="fr">On ne vend pas une IA : Cubit fait travailler ton abonnement Claude en équipe.</span><span lang="en">We don't sell an AI: Cubit puts your own Claude plan to work as a team.</span></p>
     </div>
 
     <!-- La démo : des agents qui travaillent vraiment (animation, pas une vidéo) -->
     <div class="stage" aria-label="Démonstration : trois agents travaillent en même temps sur un jeu Roblox">
-      <div class="baseplate" aria-hidden="true"></div>
+      <div class="plate" aria-hidden="true"></div>
+      <svg class="brick k1" aria-hidden="true"><use href="#brick"/></svg>
+      <svg class="brick k2" aria-hidden="true"><use href="#brick"/></svg>
+      <svg class="brick k3" aria-hidden="true"><use href="#brick"/></svg>
+      <svg class="brick k4" aria-hidden="true"><use href="#brick"/></svg>
       <div class="board" id="board">
         <div class="board-top">
           <span class="dots"><i></i><i></i><i></i></span>
@@ -82,32 +84,22 @@
   </section>
 
   <!-- ============ BANDEAU ============ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="track">
-      <span lang="fr">Agents en parallèle</span><span lang="en">Parallel agents</span><i></i>
-      <span lang="fr">Synchro Studio</span><span lang="en">Studio sync</span><i></i>
-      <span lang="fr">Plan du jeu</span><span lang="en">Game plan</span><i></i>
-      <span lang="fr">Annuler en un clic</span><span lang="en">One-click undo</span><i></i>
-      <span lang="fr">Dictée vocale</span><span lang="en">Voice dictation</span><i></i>
-      <span lang="fr">Mode Équipe</span><span lang="en">Team mode</span><i></i>
-      <span lang="fr">Appli mobile</span><span lang="en">Mobile app</span><i></i>
-      <span lang="fr">Moins de tokens</span><span lang="en">Fewer tokens</span><i></i>
-      <span lang="fr">Agents en parallèle</span><span lang="en">Parallel agents</span><i></i>
-      <span lang="fr">Synchro Studio</span><span lang="en">Studio sync</span><i></i>
-      <span lang="fr">Plan du jeu</span><span lang="en">Game plan</span><i></i>
-      <span lang="fr">Annuler en un clic</span><span lang="en">One-click undo</span><i></i>
-      <span lang="fr">Dictée vocale</span><span lang="en">Voice dictation</span><i></i>
-      <span lang="fr">Mode Équipe</span><span lang="en">Team mode</span><i></i>
-      <span lang="fr">Appli mobile</span><span lang="en">Mobile app</span><i></i>
-      <span lang="fr">Moins de tokens</span><span lang="en">Fewer tokens</span><i></i>
-    </div>
-  </div>
+  <ul class="strip" aria-label="Fonctions">
+    <li><span lang="fr">Agents en parallèle</span><span lang="en">Parallel agents</span></li>
+    <li><span lang="fr">Synchro Studio</span><span lang="en">Studio sync</span></li>
+    <li><span lang="fr">Plan du jeu</span><span lang="en">Game plan</span></li>
+    <li><span lang="fr">Annuler en un clic</span><span lang="en">One-click undo</span></li>
+    <li><span lang="fr">Dictée vocale</span><span lang="en">Voice dictation</span></li>
+    <li><span lang="fr">Mode Équipe</span><span lang="en">Team mode</span></li>
+    <li><span lang="fr">Appli mobile</span><span lang="en">Mobile app</span></li>
+    <li><span lang="fr">Moins de tokens</span><span lang="en">Fewer tokens</span></li>
+  </ul>
 
   <!-- ============ ESSAI : donne une tâche ============ -->
   <section class="try" id="try">
     <div class="sec-head">
       <p class="sec-kicker"><span lang="fr">Essaie</span><span lang="en">Try it</span></p>
-      <h2><span lang="fr">Donne une mission à ton équipe.</span><span lang="en">Give your team a mission.</span></h2>
+      <h2><span lang="fr">Donne une mission à ton équipe</span><span lang="en">Give your team a mission</span></h2>
       <p><span lang="fr">Choisis une demande ou écris la tienne, et regarde le Chef de projet la découper en tâches pour ses spécialistes. C'est exactement ce qui se passe dans l'appli.</span><span lang="en">Pick a request or write your own, and watch the project lead split it into tasks for its specialists. That's exactly what happens in the app.</span></p>
     </div>
     <div class="try-box">
@@ -130,7 +122,7 @@
   <section class="tour" id="tour">
     <div class="sec-head">
       <p class="sec-kicker"><span lang="fr">L'appli</span><span lang="en">The app</span></p>
-      <h2><span lang="fr">Tout ton jeu, sous tes yeux.</span><span lang="en">Your whole game, at a glance.</span></h2>
+      <h2><span lang="fr">Tout ton jeu, sous tes yeux</span><span lang="en">Your whole game, at a glance</span></h2>
       <p><span lang="fr">Tes agents côte à côte, le plan du jeu, ce qui t'attend et ton équipe : tu sais toujours qui fait quoi, et tu valides d'un clic.</span><span lang="en">Your agents side by side, the game plan, what needs you and your team: you always know who does what, and approve in one click.</span></p>
     </div>
     <div class="tabs" role="tablist" aria-label="Écrans de Cubit">
@@ -151,7 +143,7 @@
   <section class="features" id="features">
     <div class="sec-head">
       <p class="sec-kicker"><span lang="fr">Les fonctions</span><span lang="en">Features</span></p>
-      <h2><span lang="fr">Pensé pour finir ton jeu, pas juste pour coder.</span><span lang="en">Built to finish your game, not just to write code.</span></h2>
+      <h2><span lang="fr">Pensé pour finir ton jeu, pas juste pour coder</span><span lang="en">Built to finish your game, not just to write code</span></h2>
     </div>
     <div class="bento">
       <article class="tile t-undo">
@@ -196,7 +188,7 @@
   <section class="team" id="team">
     <div class="team-text">
       <p class="sec-kicker"><span lang="fr">En équipe</span><span lang="en">Teams</span></p>
-      <h2><span lang="fr">Tu n'es plus seul sur ton jeu.</span><span lang="en">You're no longer alone on your game.</span></h2>
+      <h2><span lang="fr">Tu n'es plus seul sur ton jeu</span><span lang="en">You're no longer alone on your game</span></h2>
       <p class="big"><span lang="fr">Invite tes devs, partagez un jeu, et vos agents se coordonnent entre vos PC.</span><span lang="en">Invite your devs, share a game, and your agents coordinate across your PCs.</span></p>
       <ul class="ticks">
         <li><span lang="fr">Le code se synchronise tout seul, dans un dépôt GitHub privé.</span><span lang="en">Code syncs on its own, in a private GitHub repo.</span></li>
@@ -220,7 +212,7 @@
     <div class="phone-wrap"><div class="phone"><img src="img/mobile.webp" width="390" height="844" loading="lazy" alt="Cubit mobile : la discussion de l'équipe sur un téléphone."></div></div>
     <div class="mobile-text">
       <p class="sec-kicker"><span lang="fr">Sur ton téléphone</span><span lang="en">On your phone</span></p>
-      <h2><span lang="fr">Ton téléphone devient la télécommande.</span><span lang="en">Your phone becomes the remote.</span></h2>
+      <h2><span lang="fr">Ton téléphone devient la télécommande</span><span lang="en">Your phone becomes the remote</span></h2>
       <p class="big"><span lang="fr">Autorise, réponds, lance une tâche ou vérifie un changement depuis ton canapé. Un QR code suffit, aucun store.</span><span lang="en">Allow, reply, launch a task or review a change from your couch. A QR code is all it takes, no app store.</span></p>
     </div>
   </section>
@@ -268,7 +260,7 @@
   <section class="price" id="price">
     <div class="price-card">
       <div class="price-left">
-        <h2><span lang="fr">Une licence. Pour toujours.</span><span lang="en">One licence. Forever.</span></h2>
+        <h2><span lang="fr">Une licence. Pour toujours</span><span lang="en">One licence. Forever</span></h2>
         <p class="amount" data-price></p>
         <p class="muted"><span lang="fr">Paiement unique, toutes les mises à jour comprises.</span><span lang="en">One-time payment, every update included.</span></p>
         <a class="btn buy big" id="buy" href="#"><span lang="fr">Acheter Cubit</span><span lang="en">Buy Cubit</span></a>
@@ -344,7 +336,7 @@
 
   <!-- ============ DERNIER APPEL ============ -->
   <section class="final">
-    <h2><span lang="fr">Ton prochain jeu commence ici.</span><span lang="en">Your next game starts here.</span></h2>
+    <h2><span lang="fr">Ton prochain jeu commence ici</span><span lang="en">Your next game starts here</span></h2>
     <p class="final-sub"><span lang="fr">Tu as l'idée. Ton équipe est prête.</span><span lang="en">You have the idea. Your team is ready.</span></p>
     <a class="btn buy" href="#price"><span lang="fr">Acheter Cubit</span><span lang="en">Get Cubit</span><b data-price></b></a>
   </section>
