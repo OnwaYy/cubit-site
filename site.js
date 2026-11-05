@@ -367,5 +367,57 @@ $$('.seg').forEach((g) => $$('button', g).forEach((b) => b.addEventListener('cli
   renderCheck();
 })));
 
+// ---------- Effets au défilement ----------
+if (!calm) {
+  // Variantes d'apparition selon le bloc
+  $$('.team-text, .check-text, .phone-wrap').forEach((e) => e.classList.add('from-l'));
+  $$('.chat, .check-result, .mobile-text').forEach((e) => e.classList.add('from-r'));
+  $$('.tile, .needs-row p, .price-card').forEach((e) => e.classList.add('pop'));
+  $$('.screen').forEach((e) => e.classList.add('unfold'));
+  // Titres : les mots montent un par un
+  $$('section h2 > span').forEach((sp) => {
+    sp.innerHTML = sp.textContent.split(' ').map((w, i) => `<span class="w" style="--i:${i}">${w}</span>`).join(' ');
+  });
+  const ho = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('words-in'); ho.unobserve(e.target); } }), { threshold: .4 });
+  $$('section h2').forEach((h) => ho.observe(h));
+  // Le prix compte jusqu'au montant
+  const amt = $('.amount');
+  if (amt) new IntersectionObserver((es, o) => { if (!es[0].isIntersecting) return; o.disconnect();
+    const full = amt.textContent; const n = parseInt(full.replace(/\D/g, ''), 10); if (!n) return;
+    const t0 = performance.now(); (function f(t) { const p = Math.min(1, (t - t0) / 1100); amt.textContent = full.replace(/\d+/, Math.round(n * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(f); else amt.textContent = full; })(t0);
+  }, { threshold: .6 }).observe(amt);
+  // Parallaxe + barre de progression + menu actif
+  const prog = $('#progress'); const bricks = $$('.brick'); const board = $('#board'); const strip = $('.strip');
+  const secs = $$('main section[id]'); const links = $$('.nav-links a[href^="#"]');
+  let ticking = false;
+  const onScroll = () => {
+    ticking = false; const y = scrollY; const H = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = `scaleX(${y / Math.max(1, H)})`;
+    if (y < innerHeight * 1.2) {
+      bricks.forEach((b, i) => { b.style.transform = `translate3d(0, ${-y * (.12 + i * .07)}px, 0) rotate(${y * (i % 2 ? .03 : -.03)}deg)`; });
+      if (board) board.style.transform = `translateY(${y * .06}px) rotateX(${Math.min(8, y * .02)}deg)`;
+    }
+    if (strip) { const r = strip.getBoundingClientRect(); strip.style.setProperty('--sx', `${(r.top - innerHeight / 2) * .08}px`); }
+    let cur = ''; secs.forEach((s) => { if (s.getBoundingClientRect().top < innerHeight * .4) cur = s.id; });
+    links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === `#${cur}`));
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+  // Survol : les cartes s'inclinent vers la souris et une lumière suit le curseur
+  if (matchMedia('(pointer: fine)').matches) {
+    $$('.tile, .price-card, .check-result, .needs-row p').forEach((t) => {
+      t.addEventListener('pointermove', (e) => { const r = t.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height;
+        t.style.setProperty('--mx', `${x * 100}%`); t.style.setProperty('--my', `${y * 100}%`);
+        t.style.transform = `perspective(900px) rotateX(${(.5 - y) * 5}deg) rotateY(${(x - .5) * 6}deg) translateY(-4px)`; });
+      t.addEventListener('pointerleave', () => { t.style.transform = ''; });
+    });
+    // Les boutons d'achat attirent un peu le curseur
+    $$('.btn.buy').forEach((b) => {
+      b.addEventListener('pointermove', (e) => { const r = b.getBoundingClientRect(); b.style.translate = `${(e.clientX - r.left - r.width / 2) * .15}px ${(e.clientY - r.top - r.height / 2) * .25}px`; });
+      b.addEventListener('pointerleave', () => { b.style.translate = ''; });
+    });
+  }
+}
+
 $('#lang').addEventListener('click', () => setLang(lang() === 'fr' ? 'en' : 'fr'));
 setLang(pickLang());

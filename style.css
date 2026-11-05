@@ -478,3 +478,57 @@ h3 { font-weight: 600; }
 @media (max-width: 1000px) { .k4 { display: none; } .k1 { left: -8px; } .k3 { right: -6px; } }
 @media (max-width: 640px) { .brick { width: 48px; height: 44px; } .k2 { display: none; } .plate { display: none; } }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* =====================================================================
+   Effets au défilement et au survol
+   ===================================================================== */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--blue), var(--accent)); pointer-events: none; }
+.nav-links a { position: relative; }
+.nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transition: transform .25s var(--ease); }
+.nav-links a.on { color: var(--text); }
+.nav-links a.on::after { transform: scaleX(1); }
+
+.brick { transition: transform .1s linear; }
+.brick { animation: none; }
+.brick use { animation: float 6s var(--ease) infinite alternate; transform-box: fill-box; }
+.board { transform-origin: center top; will-change: transform; }
+.strip { overflow: hidden; }
+.strip li { transform: translateX(var(--sx, 0)); transition: transform .2s linear; }
+
+/* Variantes d'apparition */
+.reveal.from-l { transform: translateX(-48px); }
+.reveal.from-r { transform: translateX(48px); }
+.reveal.pop { transform: translateY(30px) scale(.94); }
+.reveal.unfold { transform: perspective(1400px) rotateX(18deg) translateY(60px) scale(.94); transform-origin: 50% 0; transition-duration: .9s; }
+.reveal.in.from-l, .reveal.in.from-r, .reveal.in.pop, .reveal.in.unfold { transform: none; }
+.reveal { transition: opacity .7s var(--ease), transform .8s var(--ease); }
+.tile.reveal.in, .price-card.reveal.in, .check-result.reveal.in, .needs-row p.reveal.in { transition: opacity .7s var(--ease), transform .35s var(--ease), border-color .25s var(--ease); }
+
+/* Titres mot par mot */
+section h2 .w { display: inline-block; opacity: 0; transform: translateY(.5em) rotate(3deg); filter: blur(6px); transition: opacity .5s var(--ease), transform .6s var(--ease), filter .5s var(--ease); transition-delay: calc(var(--i) * 55ms); }
+section h2.words-in .w { opacity: 1; transform: none; filter: none; }
+
+/* Lumière qui suit la souris */
+.tile::after, .price-card::after, .check-result::after, .needs-row p::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease);
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(150, 170, 255, .14), transparent 60%); }
+.tile:hover::after, .price-card:hover::after, .check-result:hover::after, .needs-row p:hover::after { opacity: 1; }
+.check-result, .needs-row p { position: relative; }
+
+/* Liserés qui se dessinent à l'apparition */
+.tile::before { transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease) .25s; }
+.tile.in::before { transform: scaleX(1); }
+.sec-kicker::before { transition: transform .5s var(--ease); }
+.sec-head:not(.in) .sec-kicker::before { transform: scale(0); }
+
+/* Bouton aimanté */
+.btn.buy { transition: background .15s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease), translate .2s var(--ease); }
+
+/* Le téléphone flotte, le chat pulse */
+.phone { animation: phone 5s ease-in-out infinite alternate; }
+@keyframes phone { to { transform: rotate(-2deg) translateY(-10px); } }
+.event i { animation: beat 1s ease-in-out infinite alternate; }
+
+@media (prefers-reduced-motion: reduce) {
+  section h2 .w { opacity: 1; transform: none; filter: none; }
+  .progress { display: none; }
+}
