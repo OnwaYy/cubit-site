@@ -265,8 +265,21 @@ async function startDemo() {
 
 
 // ---------- Téléchargement gratuit ----------
-const dl = $('#download');
-if (dl) { dl.href = SITE.downloadUrl; dl.target = '_blank'; dl.rel = 'noopener'; }
+// Lien direct vers l'installateur (.exe) de la dernière version de l'appli.
+// La release « dictee-gpu » et toute release sans .exe sont ignorées ; si GitHub ne répond pas, lien vers la page des versions.
+const dlLinks = $$('[data-download], #download');
+dlLinks.forEach((a) => { a.href = SITE.downloadUrl; a.target = '_blank'; a.rel = 'noopener'; });
+fetch('https://api.github.com/repos/OnwaYy/meo-hub-releases/releases?per_page=20', { headers: { accept: 'application/vnd.github+json' } })
+  .then((r) => (r.ok ? r.json() : []))
+  .then((list) => {
+    const rel = (Array.isArray(list) ? list : [])
+      .filter((x) => !x.draft && !x.prerelease && /^v?\d+\.\d+/.test(x.tag_name) && (x.assets || []).some((a) => /\.exe$/i.test(a.name)))
+      .sort((a, b) => new Date(b.published_at) - new Date(a.published_at))[0];
+    if (!rel) return;
+    const exe = rel.assets.find((a) => /\.exe$/i.test(a.name));
+    dlLinks.forEach((a) => { a.href = exe.browser_download_url; a.removeAttribute('target'); a.title = `${exe.name} (${Math.round(exe.size / 1048576)} Mo)`; });
+  })
+  .catch(() => {});
 
 // ---------- Essai : le Chef de projet découpe une tâche ----------
 const TASKS = {

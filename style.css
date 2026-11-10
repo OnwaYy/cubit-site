@@ -532,3 +532,6 @@ section h2.words-in .w { opacity: 1; transform: none; filter: none; }
   section h2 .w { opacity: 1; transform: none; filter: none; }
   .progress { display: none; }
 }
+
+#pay-owned .btn { margin-top: 10px; }
+@media (max-width: 640px) { .nav-dl { display: none; } }
